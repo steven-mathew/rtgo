@@ -1,4 +1,4 @@
-package geom
+package geo
 
 import "github.com/golang/geo/r3"
 

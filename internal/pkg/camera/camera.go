@@ -5,7 +5,7 @@ import (
 	"math/rand"
 
 	"github.com/golang/geo/r3"
-	"github.com/steven-mathew/rtgo/internal/pkg/geom"
+	"github.com/steven-mathew/rtgo/internal/pkg/geo"
 )
 
 type Camera struct {
@@ -58,7 +58,7 @@ func (c *Camera) Focus(focalPoint r3.Vector, aperture float64) {
 }
 
 // CastRay returns a Ray, where s, t in [-1, 1]
-func (c Camera) CastRay(s, t float64) geom.Ray {
+func (c Camera) CastRay(s, t float64) geo.Ray {
 	d := 1. / math.Tan(c.VerticalFov/2.0)
 	right := c.Direction.Cross(c.Up).Normalize()
 
@@ -79,7 +79,7 @@ func (c Camera) CastRay(s, t float64) geom.Ray {
 		newDirection = focalPoint.Add(origin.Mul(-1))
 	}
 
-	return geom.Ray{
+	return geo.Ray{
 		Origin:    c.Origin,
 		Direction: newDirection.Normalize(),
 	}

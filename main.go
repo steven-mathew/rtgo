@@ -7,7 +7,7 @@ import (
 	"github.com/golang/geo/r3"
 	"github.com/steven-mathew/rtgo/internal/pkg/camera"
 	"github.com/steven-mathew/rtgo/internal/pkg/color"
-	"github.com/steven-mathew/rtgo/internal/pkg/geom"
+	"github.com/steven-mathew/rtgo/internal/pkg/geo"
 )
 
 func main() {
@@ -32,7 +32,7 @@ func main() {
 			v := float64(j) / float64(imageHeight-1)
 
 			ray := cam.CastRay(u, v)
-			color := func(ray geom.Ray) color.Color {
+			color := func(ray geo.Ray) color.Color {
 				unitDirection := ray.Direction.Normalize()
 				t := 0.5 * (unitDirection.Y + 1.)
 				u := r3.Vector{X: 1, Y: 1, Z: 1}.Mul(1 - t)
